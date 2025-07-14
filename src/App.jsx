@@ -38,7 +38,7 @@ const SLTChatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://10.0.4.64:5000/chat', {
+      const response = await fetch('https://thinula02.pythonanywhere.com/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
