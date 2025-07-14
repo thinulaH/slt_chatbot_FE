@@ -51,7 +51,7 @@ const SLTChatbot = () => {
       if (data.reply) {
         const botMessage = {
           id: messages.length + 2,
-          text: data.reply,
+          text: data.reply, // This 'text' now contains HTML from the backend
           sender: 'bot',
           timestamp: new Date()
         };
@@ -136,9 +136,18 @@ const SLTChatbot = () => {
                       <User className="w-5 h-5 mt-0.5 text-white flex-shrink-0" />
                     )}
                     <div className="flex-1">
-                      <div className="whitespace-pre-wrap text-sm leading-relaxed">
-                        {message.text}
-                      </div>
+                      {/* THIS IS THE CRUCIAL CHANGE */}
+                      {message.sender === 'bot' ? (
+                        <div
+                          className="whitespace-pre-wrap text-sm leading-relaxed"
+                          dangerouslySetInnerHTML={{ __html: message.text }}
+                        ></div>
+                      ) : (
+                        <div className="whitespace-pre-wrap text-sm leading-relaxed">
+                          {message.text}
+                        </div>
+                      )}
+                      {/* END OF CRUCIAL CHANGE */}
                       <div className={`text-xs mt-2 ${message.sender === 'user' ? 'text-blue-100' : 'text-gray-500'
                         }`}>
                         {message.timestamp.toLocaleTimeString()}
