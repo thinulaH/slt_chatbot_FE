@@ -38,7 +38,7 @@ const SLTChatbot = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/chat', {
+      const response = await fetch('thinulah-django--8000.prod1b.defang.dev/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
